@@ -1,29 +1,32 @@
 #!/usr/bin/python3
-"""defines the function `canUnlockAll`"""
+'''LockBoxes Challenge'''
 
 
 def canUnlockAll(boxes):
-    """determines of all `boxes` can be unlocked"""
-    unlocked = [0]  # boxes whose keys are found
-    searched = []  # boxes opened and searched for more keys
-    new_key = []  # temporary container for new keys
+    '''determines if all the boxes can be opened or not
+    Returns:
+        True: all boxes can be opened
+        False: not all boxes can be opened
+    '''
+    length = len(boxes)
+    keys = set()
+    opened_boxes = []
+    i = 0
 
-    # since `box 0` can be opened without a key
-    for key in boxes[0]:
-        if key in range(len(boxes)) and key not in unlocked:
-            unlocked.append(key)
-    searched.append(0)
+    while i < length:
+        oldi = i
+        opened_boxes.append(i)
+        keys.update(boxes[i])
+        for key in keys:
+            if key != 0 and key < length and key not in opened_boxes:
+                i = key
+                break
+        if oldi != i:
+            continue
+        else:
+            break
 
-    # search for more keys until all boxes whose keys are found are all opened
-    while len(unlocked) > len(searched):
-        for key in unlocked:
-            if key not in searched:
-                for elm in boxes[key]:
-                    if elm in range(len(boxes)) and elm not in unlocked:
-                        new_key.append(elm)
-                searched.append(key)
-        unlocked.extend(new_key)
-        new_key.clear()
-
-    unlocked.sort()
-    return unlocked == list(range(len(boxes)))
+    for i in range(length):
+        if i not in opened_boxes and i != 0:
+            return False
+    return True
