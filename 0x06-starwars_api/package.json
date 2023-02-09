@@ -1,0 +1,20 @@
+{
+  "name": "0x06-starwars_api",
+  "version": "1.0.0",
+  "description": "Script to get all the characters in Movie given movie ID",
+  "main": "0-starwars_characters.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./0-starwars_characters.js 4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michaelgobz/alx-interview/0x06-starwars_api"
+  },
+  "author": "Michael Goboola",
+  "license": "MIT",
+  "dependencies": {
+    "request":"2.88.2",
+    "semistandard": "16.0.1"
+  }
+}
